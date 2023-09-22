@@ -17,23 +17,37 @@ namespace Euclides
             InitializeComponent();
         }
 
+        private int AEuclides(int a, int b)
+        {
+            if (b == 0)
+            {
+                return a;
+            }
+            else
+            {
+                return AEuclides(b, a % b);
+            }
+        }
+
         private void Btnsi_Click(object sender, EventArgs e)
         {
             int a, b,temp,i=0,res,es;
             a = int.Parse(Txtm.Text);
             b= int.Parse(Txtn.Text);
+            int mcd = AEuclides(a, b);
+            
              while(b!=0)
             {
                 temp = b;
-                res= a%b;
-                es= a/b;
-                DGWres.Rows.Add(i.ToString(), a.ToString() + " Dividido entre " + b.ToString() + " es " + es.ToString() + " y sobran " + res.ToString(),a.ToString()+"/"+b.ToString()+" = "+es.ToString()+" + 1/"+b.ToString()+"/"+res.ToString() );
-                b = a%b; 
+                res= a % b;
+                es= a / b;
+                DGWres.Rows.Add(i.ToString(), a.ToString() + " Dividido entre " + b.ToString() + " es " + es.ToString() + " y sobran " + res.ToString(), a.ToString() + "/" + b.ToString() + " = " + es.ToString() + " + 1/" + b.ToString() + "/" + res.ToString());
+                b = a % b; 
                 a = temp;
                 i++;
-                
             }
-           
+
+                MessageBox.Show($"El MCD de {a} y {b} es {mcd}", "Máximo Común Divisor");
             
         }
 
